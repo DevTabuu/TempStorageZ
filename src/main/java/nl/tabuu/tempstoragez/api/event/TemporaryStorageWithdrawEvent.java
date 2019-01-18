@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 
 public class TemporaryStorageWithdrawEvent extends TemporaryStorageInteractEvent {
 
-    IStorageItem _item;
+    private IStorageItem _item;
 
     public TemporaryStorageWithdrawEvent(Player player, IStorage storage, IStorageItem item) {
         super(player, storage);

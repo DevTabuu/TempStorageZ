@@ -10,26 +10,26 @@ import java.util.UUID;
 public class StorageManager {
 
     private IConfiguration _data;
-    private HashMap<UUID, Storage> _storages;
+    private HashMap<UUID, Storage> _storage;
 
     public StorageManager(){
         _data = TempStorageZ.getInstance().getConfigurationManager().getConfiguration("data");
-        _storages = new HashMap<>();
+        _storage = new HashMap<>();
 
-        load();
+        reload();
     }
 
     public Storage getStorage(OfflinePlayer player){
         UUID uuid = player.getUniqueId();
 
-        if(!_storages.containsKey(uuid))
-            _storages.put(uuid, new Storage(uuid));
+        if(!_storage.containsKey(uuid))
+            _storage.put(uuid, new Storage(uuid));
 
-        return _storages.get(uuid);
+        return _storage.get(uuid);
     }
 
-    public void load(){
-        _storages.clear();
+    public void reload(){
+        _storage.clear();
 
         if(!_data.getKeys(false).contains("StorageData"))
             return;
@@ -38,12 +38,12 @@ public class StorageManager {
             UUID uuid = UUID.fromString(uuidString);
             Storage storage = Storage.fromString(uuid, _data.getString("StorageData." + uuidString));
 
-            _storages.put(uuid, storage);
+            _storage.put(uuid, storage);
         }
     }
 
     public void save(){
-        for(Storage storage : _storages.values()){
+        for(Storage storage : _storage.values()){
             UUID uuid = storage.getOwner().getUniqueId();
             _data.set("StorageData." + uuid.toString(), storage.toString());
         }

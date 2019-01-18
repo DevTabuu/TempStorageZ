@@ -16,9 +16,7 @@ public class TempStorageAPI {
         return INSTANCE;
     }
 
-    protected TempStorageAPI(){
-
-    }
+    private TempStorageAPI(){ }
 
     public IStorage getStorage(OfflinePlayer player){
         return TempStorageZ.getInstance().getStorageManager().getStorage(player);

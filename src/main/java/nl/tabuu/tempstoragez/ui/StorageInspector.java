@@ -20,7 +20,6 @@ import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +29,7 @@ public class StorageInspector extends InventoryFormUI {
     private Storage _storage;
     private int _page;
     private Dictionary _local;
-    List<Integer> _animationTasks;
+    private List<Integer> _animationTasks;
 
     public StorageInspector(Storage storage) {
         super("Temporary Storage", InventorySize.DOUBLE_CHEST);
@@ -60,7 +59,8 @@ public class StorageInspector extends InventoryFormUI {
                 lime = new ItemBuilder(Material.LIME_DYE).setDisplayName(" "),
                 empty = new ItemBuilder(Material.AIR);
 
-        IBrush border = new CheckerBrush(yellow.build(), purple.build());
+        IBrush
+                border = new CheckerBrush(yellow.build(), purple.build());
 
         Style
                 exitButtonStyle = new Style(barrier.setDisplayName(_local.translate("UI_EXIT")).build(), empty.build()),
@@ -68,14 +68,15 @@ public class StorageInspector extends InventoryFormUI {
                 previousButtonStyle = new Style(map.setDisplayName(_local.translate("UI_PREVIOUS")).build(), empty.build()),
                 collectButtonStyle = new Style(lime.setDisplayName(_local.translate("UI_COLLECT_ALL")).build(), empty.build());
 
-        setBrush(border);
-        drawRectangle(new Vector2f(0, 0), new Vector2f(8, 5));
-
         Button
                 exitButton = new Button(exitButtonStyle, this::onExitButtonClick),
                 nextButton = new Button(nextButtonStyle, this::onNextButtonClick),
                 previousButton = new Button(previousButtonStyle, this::onPreviousButtonClick),
                 collectButton = new Button(collectButtonStyle, this::onCollectButtonClick);
+
+
+        setBrush(border);
+        drawRectangle(new Vector2f(0, 0), new Vector2f(8, 5));
 
         setElement(new Vector2f(4, 5), exitButton);
         setElement(new Vector2f(5, 5), nextButton);
@@ -98,7 +99,7 @@ public class StorageInspector extends InventoryFormUI {
 
             StorageItem item = _storage.getStorageItems().get(index);
 
-            _animationTasks.add(Bukkit.getScheduler().scheduleSyncRepeatingTask(TempStorageZ.getInstance(), ()->{
+            _animationTasks.add(Bukkit.getScheduler().scheduleSyncRepeatingTask(TempStorageZ.getInstance(), () -> {
                 String remainingTimeFormat = _local.translate("ITEM_EXPIRE_DATE_NONE");
                 if(item.hasExpireDate()){
                     long remainingTime = item.getExpireDate() - System.currentTimeMillis();

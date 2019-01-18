@@ -6,21 +6,20 @@ import nl.tabuu.tempstoragez.storage.StorageManager;
 
 public class TempStorageZ extends TabuuCorePlugin {
 
-    private static TempStorageZ _instance;
+    private static TempStorageZ INSTANCE;
 
     private StorageManager _storageManager;
 
     @Override
     public void onEnable(){
-        _instance = this;
+        INSTANCE = this;
+        _storageManager = new StorageManager();
 
         getConfigurationManager().addConfiguration("config");
         getConfigurationManager().addConfiguration("data");
         getConfigurationManager().addConfiguration("lang");
 
-        this.getCommand("temporarystorage").setExecutor(new TemporaryStorageCommand());
-
-        _storageManager = new StorageManager();
+        getCommand("temporarystorage").setExecutor(new TemporaryStorageCommand());
 
         getInstance().getLogger().info("TempStorageZ is now enabled.");
     }
@@ -36,6 +35,6 @@ public class TempStorageZ extends TabuuCorePlugin {
     }
 
     public static TempStorageZ getInstance(){
-        return _instance;
+        return INSTANCE;
     }
 }
