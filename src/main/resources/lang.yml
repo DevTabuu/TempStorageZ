@@ -1,0 +1,11 @@
+UI_TITLE: "&b&lStorage [{PAGE}/{PAGE_MAX}]"
+UI_EXIT: "&c&lClose"
+UI_NEXT: "&9&lNext"
+UI_PREVIOUS: "&9&lPrevious"
+UI_COLLECT_ALL: "&2&lCollect all"
+UI_ITEM_EXPIRE_DATE: "&3&lExpires In: &b&l&o{TIME_FORMAT}"
+UI_ITEM_DESCRIPTION: "&3&lDescription: &7{DESCRIPTION}"
+
+ITEM_DESCRIPTION_NONE: "&7&oNone."
+ITEM_EXPIRE_DATE_NONE: "&7&oNone."
+ITEM_EXPIRE_DATE_EXPIRED: "&c&oExpired."

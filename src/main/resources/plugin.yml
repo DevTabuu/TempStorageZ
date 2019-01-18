@@ -1,0 +1,36 @@
+name: TempStorageZ
+version: 1.0 BETA
+main: nl.tabuu.tempstoragez.TempStorageZ
+description: An API for temporary storage.
+author: Tabuu
+authors: [Tabuu]
+website: https://www.tabuu.nl
+depend: [TabuuCore]
+api-version: 1.13
+
+commands:
+  temporarystorage:
+    usage: /temporarystorage [player]
+    description: Opens a player's temporary storage.
+    permission: tempstoragez.open.self
+    aliases: [tempstorage, temps, tstorage, ts]
+
+  temporarystorage store:
+    usage: /temporarystorage store [time] [player]
+    description: Stores the item you are holding to a players temporary storage.
+    permission: tempstoragez.open.self
+
+permissions:
+  tempstoragez.open.self:
+    description: Allows players to open there own temporary storage.
+    default: true
+  tempstoragez.open.other:
+    description: Allows players to open someone's temporary storage.
+    default: op
+
+  tempstoragez.store.self:
+    description: Allows players to store something in there own inventory.
+    default: op
+  tempstoragez.store.other:
+    description: Allows players to store something in someone's inventory.
+    default: op

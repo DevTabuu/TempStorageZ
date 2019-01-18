@@ -1,0 +1,4 @@
+# DESCRIPTION:  If no specific time has been set by a plugin this will be the default expiration time.
+# FORMAT:       TabuuCore time format
+# NOTE:         Enter a value of 0 (e.g. '0s', '0m', '0h', etc) for no expiration.
+DefaultExpireTime: "1h 15s"
