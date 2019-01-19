@@ -2,6 +2,7 @@ package nl.tabuu.tempstoragez.storage;
 
 import nl.tabuu.tabuucore.configuration.IConfiguration;
 import nl.tabuu.tempstoragez.TempStorageZ;
+import nl.tabuu.tempstoragez.api.TempStorageAPI;
 import org.bukkit.OfflinePlayer;
 
 import java.util.HashMap;
@@ -31,7 +32,7 @@ public class StorageManager {
     public void reload(){
         _storage.clear();
 
-        if(!_data.getKeys(false).contains("StorageData"))
+        if(!_data.contains("StorageData"))
             return;
 
         for(String uuidString : _data.getConfigurationSection("StorageData").getKeys(false)){

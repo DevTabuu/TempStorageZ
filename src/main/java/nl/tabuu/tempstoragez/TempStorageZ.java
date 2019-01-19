@@ -13,11 +13,13 @@ public class TempStorageZ extends TabuuCorePlugin {
     @Override
     public void onEnable(){
         INSTANCE = this;
-        _storageManager = new StorageManager();
 
         getConfigurationManager().addConfiguration("config");
         getConfigurationManager().addConfiguration("data");
         getConfigurationManager().addConfiguration("lang");
+
+        _storageManager = new StorageManager();
+        _storageManager.reload();
 
         getCommand("temporarystorage").setExecutor(new TemporaryStorageCommand());
 
