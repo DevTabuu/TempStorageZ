@@ -16,9 +16,13 @@ public interface IStorage {
 
     IStorageItem addItem(ItemStack item, long expiresIn, String description);
 
-    void addItem(StorageItem item);
+    IStorageItem addItem(ItemStack item, long expiresIn);
+
+    IStorageItem addItem(ItemStack item, String description);
+
+    void addItem(IStorageItem item);
 
     void removeItem(ItemStack item);
 
-    void removeItem(StorageItem item);
+    void removeItem(IStorageItem item);
 }

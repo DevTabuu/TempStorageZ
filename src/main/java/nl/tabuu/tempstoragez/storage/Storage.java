@@ -3,6 +3,7 @@ package nl.tabuu.tempstoragez.storage;
 import nl.tabuu.tabuucore.serialization.bytes.Serializer;
 import nl.tabuu.tabuucore.util.ItemBuilder;
 import nl.tabuu.tempstoragez.api.storage.IStorage;
+import nl.tabuu.tempstoragez.api.storage.IStorageItem;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.inventory.ItemStack;
@@ -49,12 +50,26 @@ public class Storage implements IStorage {
         return storageItem;
     }
 
-    public void addItem(StorageItem item) {
-        _items.add(item);
+    @Override
+    public IStorageItem addItem(ItemStack item, long expiresIn) {
+        return addItem(item, expiresIn, null);
     }
 
-    public void removeItem(StorageItem item) {
-        _items.remove(item);
+    @Override
+    public IStorageItem addItem(ItemStack item, String description) {
+        return addItem(item, 0, description);
+    }
+
+    @Override
+    public void addItem(IStorageItem item) {
+        if(item instanceof StorageItem)
+            _items.add((StorageItem) item);
+    }
+
+    @Override
+    public void removeItem(IStorageItem item) {
+        if(item instanceof StorageItem)
+            _items.remove(item);
     }
 
     public void removeItem(ItemStack item) {
